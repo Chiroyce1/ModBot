@@ -5,7 +5,7 @@ app.all('/', (req, res) => {
     res.send('im alive!');
 })
 
-export default function stayAlive() {
+export function stayAlive() {
     app.listen(3000, () => {
         console.log("🚀 Keep alive HTTP server is running on ::3000");
     })

@@ -2,6 +2,9 @@ import fs from "node:fs";
 import { stayAlive } from './server.js';
 import { REST } from "@discordjs/rest";
 import { Client, GatewayIntentBits, Collection, Routes } from "discord.js";
+import { config } from 'dotenv';
+
+config();
 
 const client = new Client({
     intents: [
@@ -50,7 +53,7 @@ if (process.argv.includes("-r")) {
 }
 
 client.on('interactionCreate', async interaction => {
-    if (!interaction.isChatInputCommand()) return;
+    if (!interaction.isChatInputCommand() && !interaction.isUserContextMenuCommand) return;
     const command = commandFromName(interaction.commandName, commands);
     if (!command) return;
     await command[1].execute(interaction, client);
