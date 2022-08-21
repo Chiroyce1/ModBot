@@ -1,12 +1,15 @@
 import { ContextMenuCommandBuilder, ApplicationCommandType } from "discord.js";
 
+const MOD_CHANNEL = "1010854019733917716";
+const url_format = "https://discord.com/channels/1010852997858852964/{CHANNEL}/{ID}";
+
 export const data = new ContextMenuCommandBuilder()
     .setName('Report')
     .setType(ApplicationCommandType.Message)
 
 export const execute = async (interaction, client) => {
+    interaction.reply({ content: `Message successfully reported to moderators.`, ephemeral: true });
     console.log(interaction);
-    interaction.reply({ content: `reported message #${interaction.targetId}`, ephemeral: true });
-    const channel = client.channels.cache.get('1010854019733917716');
-    channel.send(`reported message #${interaction.targetId}`);
+    const channel = client.channels.cache.get(MOD_CHANNEL);
+    channel.send(`<@${interaction.user.id}> reported ${url_format.replaceAll("{CHANNEL}", interaction.channelId).replaceAll("{ID}", interaction.targetId)}`);
 }
