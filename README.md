@@ -1,2 +1,3 @@
 # ModBot
  
+A Discord bot.
