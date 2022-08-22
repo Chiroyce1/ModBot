@@ -2,6 +2,7 @@ import express from 'express';
 const app = express();
 
 app.all('/', (req, res) => {
+    console.log('[>] Received uptime ping');
     res.send('im alive!');
 })
 
