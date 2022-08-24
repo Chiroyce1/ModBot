@@ -1,2 +1,3 @@
 # Build Settings
-theme: hacker
+markdown: kramdown
+theme: Hacker
