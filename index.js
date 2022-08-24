@@ -13,18 +13,13 @@ const client = new Client({
     ]
 });
 
-
 const commandFromName = (name, commands) => {
     for (const command of commands) {
         if (command[0] === name) {
             return command;
-        }
-    }
-}
-
-client.on("ready", () => {
-    console.log(`[>] Logged in as ${client.user.tag}`)
-})
+        };
+    };
+};
 
 // Read all commands from .js files in the ./commands directory
 const staticCommands = [];
@@ -35,7 +30,7 @@ for (const file of commandFiles) {
     console.log("[>] Loaded command /" + file.substring(0, file.length - 3));
     staticCommands.push(command.data.toJSON());
     commands.set(command.data.name, command);
-}
+};
 
 // If we specify to refresh slash commands
 if (process.argv.includes("-r")) {
@@ -50,19 +45,26 @@ if (process.argv.includes("-r")) {
     } catch (err) {
         console.log(`[!] Error while refreshing / commands: ${err}`);
     };
-}
+};
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand() && !interaction.isUserContextMenuCommand) return;
+
     const command = commandFromName(interaction.commandName, commands);
     if (!command) return;
-    await command[1].execute(interaction, client);
+
     try {
+        await command[1].execute(interaction, client);
     }
     catch (err) {
         console.log(`[!] Error while executing command /${interaction.commandName}: ${err}`);
     }
 });
+
+
+client.on("ready", () => {
+    console.log(`[>] Logged in as ${client.user.tag}`)
+})
 
 stayAlive();
 client.login(process.env.TOKEN);

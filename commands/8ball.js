@@ -35,5 +35,5 @@ export const execute = async (interaction, client) => {
 
     const question = interaction.options.get("question").value;
     const random = Math.floor(Math.random() * responses.length);
-    await interaction.reply(`> *${question}*\n\n:8ball: ${responses[random]}`)
+    await interaction.reply(`> *${question}*\n\n:8ball: ${responses[random]}`);
 }
