@@ -29,3 +29,6 @@ Then run `npm run start` (or `node . -r`, or press then run button on Replit) to
 You should now see a message in the moderation channel.
 
 > **Tip**: Make sure the moderation channel is only visible to select members of your server that are "moderating" it.
+
+# Build Settings
+theme: hacker
