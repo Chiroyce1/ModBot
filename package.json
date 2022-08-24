@@ -1,15 +1,21 @@
 {
   "name": "modbot",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "A Discord bot for moderation that with a report system.",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node . -r",
+    "restart": "node ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "discord",
+    "discord bot",
+    "discord.js",
+    "moderation bot discord"
+  ],
+  "author": "Chiroyce1",
+  "license": "MIT",
   "dependencies": {
     "discord.js": "^14.2.0",
     "dotenv": "^16.0.1",
