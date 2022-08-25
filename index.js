@@ -27,7 +27,6 @@ const commands = new Collection();
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 for (const file of commandFiles) {
     const command = await import(`./commands/${file}`);
-    console.log("[>] Loaded command /" + file.substring(0, file.length - 3));
     staticCommands.push(command.data.toJSON());
     commands.set(command.data.name, command);
 };
