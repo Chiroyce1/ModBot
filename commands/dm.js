@@ -13,8 +13,17 @@ export const data = new SlashCommandBuilder()
 			.setRequired(true));
 
 export const execute = async (interaction, client) => {
-	const user = await client.users.fetch(interaction.user.id);
-	console.log(user);
-	console.log(interaction.options.get("user").value);
-	interaction.reply({ content: `ok`, ephemeral: true });
+	const message = interaction.options.get("message").value;
+	const id = interaction.options.get("user").user.id;
+
+	if (!interaction.member._roles.includes(process.env.MOD_ROLE_ID)) {
+		interaction.reply({ content: `You do not have permission to send this message`, ephemeral: true });
+		const channel = client.channels.cache.get(process.env.MOD_CHANNEL);
+		channel.send(`<@${interaction.member.user.id}> tried to send \n> ${message}\n to <@${id}> without enough permissions.`)
+		return;
+	}
+
+	const user = client.users.cache.get(id);
+	await user.send(message);
+	interaction.reply({ content: `Message successfully sent!`, ephemeral: true });
 }
