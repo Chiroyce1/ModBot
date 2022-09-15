@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from "discord.js";
+import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
 	.setName('dm')
@@ -21,9 +21,10 @@ export const execute = async (interaction, client) => {
 		const channel = client.channels.cache.get(process.env.MOD_CHANNEL);
 		channel.send(`<@${interaction.member.user.id}> tried to send \n> ${message}\n to <@${id}> without enough permissions.`)
 		
+		
 		const embed = new EmbedBuilder()
                         .setTitle(`DM by ${interaction.user.username}#${interaction.user.discriminator}`)
-                        .setDescription(embedDesc)
+                        .setDescription(``)
                         .setColor(0xFF0000)
                         .setTimestamp();
 
