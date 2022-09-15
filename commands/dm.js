@@ -22,8 +22,8 @@ export const execute = async (interaction, client) => {
 		const embedDesc = `**From**: <@${interaction.user.id}>\n**To**: <@${id}>\n**Message:** ${message}`;
 		const embed = new EmbedBuilder()
                         .setTitle(`DM by ${interaction.user.username}#${interaction.user.discriminator}`)
-                        .setDescription(``)
-                        .setColor(0xFF0000)
+                        .setDescription(embedDesc)
+                        .setColor(0xE6B400)
                         .setTimestamp();
 
                 channel.send({ embeds: [embed] });
