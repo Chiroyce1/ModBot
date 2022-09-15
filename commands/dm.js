@@ -19,9 +19,7 @@ export const execute = async (interaction, client) => {
 	if (!interaction.member._roles.includes(process.env.MOD_ROLE_ID)) {
 		interaction.reply({ content: `You do not have permission to send this message`, ephemeral: true });
 		const channel = client.channels.cache.get(process.env.MOD_CHANNEL);
-		channel.send(`<@${interaction.member.user.id}> tried to send \n> ${message}\n to <@${id}> without enough permissions.`)
-		
-		
+		const embedDesc = `**From**: <@${interaction.user.id}>\n**To**: <@${id}>\n**Message:** ${message}`;
 		const embed = new EmbedBuilder()
                         .setTitle(`DM by ${interaction.user.username}#${interaction.user.discriminator}`)
                         .setDescription(``)
