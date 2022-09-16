@@ -1,12 +1,6 @@
 import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from "discord.js";
 
-/*
-Timezone: 0
-Age: 0
-Activeness: 0
-Experience as a mod: 0
-Why?: 0
-*/
+
 export const data = new ModalBuilder()
         .setCustomId('apply')
         .setTitle('Apply for Mod');
@@ -57,8 +51,10 @@ data.addComponents(
 	ActionRow4,
 	ActionRow5,
 )
+interaction.showModal(data)
 
 // END FILE
+/* kept for reference
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
@@ -103,3 +99,4 @@ export const execute = async (interaction, client) => {
 	channel.send({ embeds: [embed] });
 	interaction.reply({ content: `Application successfully sent. Please wait at least 24 hours for it to be processed.`, ephemeral: true });
 }
+*/
