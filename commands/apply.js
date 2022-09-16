@@ -1,3 +1,25 @@
+import { ModalBuilder, TextInputBuilder, TextInputStyle } from "discord.js";
+
+
+export const data = new ModalBuilder()
+        .setCustomId('apply')
+        .setTitle('Apply for Mod');
+
+const placeholder = new TextInputBuilder()
+        .setCustomId('placeholder')
+        .setLabel('placeholder')
+        .setStyle(TextInputStyle.Short);
+
+const reason = new TextInputBuilder()
+        .setCustomId('reason')
+        .setLabel('Reason')
+        .setStyle(TextInputStyle.Paragraph);
+
+
+
+
+
+// END FILE
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
