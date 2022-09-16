@@ -1,23 +1,62 @@
-import { ModalBuilder, TextInputBuilder, TextInputStyle } from "discord.js";
+import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from "discord.js";
 
-
+/*
+Timezone: 0
+Age: 0
+Activeness: 0
+Experience as a mod: 0
+Why?: 0
+*/
 export const data = new ModalBuilder()
         .setCustomId('apply')
         .setTitle('Apply for Mod');
 
-const placeholder = new TextInputBuilder()
-        .setCustomId('placeholder')
-        .setLabel('placeholder')
-        .setStyle(TextInputStyle.Short);
+const timezone = new TextInputBuilder()
+        .setCustomId('timezone')
+        .setLabel('Timezone')
+        .setStyle(TextInputStyle.Short)
+        .setPlaceholder('UTC±00:00');
+
+const age = new TextInputBuilder()
+        .setCustomId('age')
+        .setLabel('Age')
+        .setStyle(TextInputStyle.Short)
+        .setMaxLength(3);
+
+const activeness = new TextInputBuilder()
+        .setCustomId('activeness')
+        .setLabel('Activeness')
+        .setStyle(TextInputStyle.Short)
+        .setMaxLength(2)
+        .setPlaceholder('(Out of 10)');
+
+const experience = new TextInputBuilder()
+        .setCustomId('experience')
+        .setLabel('Experience as a mod')
+        .setStyle(TextInputStyle.Short)
+        .setMaxLength(2)
+        .setPlaceholder('(Out of 10)');
 
 const reason = new TextInputBuilder()
         .setCustomId('reason')
         .setLabel('Reason')
-        .setStyle(TextInputStyle.Paragraph);
+        .setStyle(TextInputStyle.Paragraph)
+        .setMinLength(10) //change as per required or remove altogether to accept funny applications
+        .setMaxLength(500);
 
+const ActionRow1 = new ActionRowBuilder().addComponents(timezone);
+const ActionRow2 = new ActionRowBuilder().addComponents(age);
+const ActionRow3 = new ActionRowBuilder().addComponents(activeness);
+const ActionRow4 = new ActionRowBuilder().addComponents(experience);
+const ActionRow5 = new ActionRowBuilder().addComponents(reason);
 
-
-
+data.addComponents(
+	ActionRow1,
+	ActionRow2,
+	ActionRow3,
+	ActionRow4,
+	ActionRow5,
+)
 
 // END FILE
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
