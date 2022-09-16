@@ -3,6 +3,7 @@ import { stayAlive } from './server.js';
 import { REST } from "@discordjs/rest";
 import { Client, GatewayIntentBits, Collection, Routes } from "discord.js";
 import { config } from 'dotenv';
+import { modalfunc } from "/commands/apply.js"
 
 config();
 
@@ -47,8 +48,11 @@ if (process.argv.includes("-r")) {
 };
 
 client.on('interactionCreate', async interaction => {
-    if (!interaction.isChatInputCommand() && !interaction.isUserContextMenuCommand) return;
-
+    if (!interaction.isChatInputCommand() && !interaction.isUserContextMenuCommand && !interaction.isModalSubmit()) return;
+    if (interaction.customId === 'apply'){
+        modalfunc(interaction);
+        interaction.reply({ content: `Application successfully sent. Please wait at least 24 hours for it to be processed.`, ephemeral: true });
+    }
     const command = commandFromName(interaction.commandName, commands);
     if (!command) return;
 

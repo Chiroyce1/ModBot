@@ -51,7 +51,27 @@ data.addComponents(
 	ActionRow4,
 	ActionRow5,
 )
-interaction.showModal(data)
+interaction.showModal(data);
+
+
+export function modalfunc(modaldata) {
+	const channel = client.channels.cache.get(process.env.MOD_CHANNEL);
+	const embedDesc = `**Mod application by**: <@${modaldata.user.id}>
+**Timezone**: ${modaldata.fields.getTextInputValue("timezone")}
+**Age**: ${modaldata.fields.getTextInputValue("age")}
+**Activeness**: ${modaldata.fields.getTextInputValue("activeness")}
+**Experience as a mod**: ${modaldata.fields.getTextInputValue("experience")}
+**Why?**: ${modaldata.fields.getTextInputValue("experience")}`;
+
+	const embed = new EmbedBuilder()
+		.setTitle(`Mod Application by ${modaldata.user.username}#${modaldata.user.discriminator}`)
+		.setDescription(embedDesc)
+		.setColor(0x4F85E1)
+		.setTimestamp();
+
+	channel.send({ embeds: [embed] });
+}
+
 
 // END FILE
 /* kept for reference
@@ -80,23 +100,4 @@ export const data = new SlashCommandBuilder()
 		option.setName('why')
 			.setDescription('Why should we pick you as a moderator?')
 			.setRequired(true));
-
-export const execute = async (interaction, client) => {
-	const channel = client.channels.cache.get(process.env.MOD_CHANNEL);
-	const embedDesc = `**Mod application by**: <@${interaction.user.id}>
-**Timezone**: ${interaction.options.get("timezone").value}
-**Age**: ${interaction.options.get("age").value}
-**Activeness**: ${interaction.options.get("activeness").value}
-**Experience as a mod**: ${interaction.options.get("experience").value}
-**Why?**: ${interaction.options.get("experience").value}`;
-
-	const embed = new EmbedBuilder()
-		.setTitle(`Mod Application by ${interaction.user.username}#${interaction.user.discriminator}`)
-		.setDescription(embedDesc)
-		.setColor(0x4F85E1)
-		.setTimestamp();
-
-	channel.send({ embeds: [embed] });
-	interaction.reply({ content: `Application successfully sent. Please wait at least 24 hours for it to be processed.`, ephemeral: true });
-}
 */
