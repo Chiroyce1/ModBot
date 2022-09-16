@@ -21,12 +21,12 @@ export const execute = async (interaction, client) => {
 		const channel = client.channels.cache.get(process.env.MOD_CHANNEL);
 		const embedDesc = `**From**: <@${interaction.user.id}>\n**To**: <@${id}>\n**Message:** ${message}`;
 		const embed = new EmbedBuilder()
-                        .setTitle(`DM by ${interaction.user.username}#${interaction.user.discriminator}`)
-                        .setDescription(embedDesc)
-                        .setColor(0xE6B400)
-                        .setTimestamp();
+			.setTitle(`DM without permission by <@${interaction.user.id}>`)
+			.setDescription(embedDesc)
+			.setColor(0xE6B400)
+			.setTimestamp();
 
-                channel.send({ embeds: [embed] });
+		channel.send({ embeds: [embed] });
 		return;
 	}
 
