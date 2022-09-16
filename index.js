@@ -47,8 +47,10 @@ if (process.argv.includes("-r")) {
 };
 
 client.on('interactionCreate', async interaction => {
-    if (!interaction.isChatInputCommand() && !interaction.isUserContextMenuCommand) return;
-
+    if (!interaction.isChatInputCommand() && !interaction.isUserContextMenuCommand && !interaction.isModalSubmit()) return;
+    if (interaction.customId === 'apply'){
+        interaction.reply("IDK")
+    }
     const command = commandFromName(interaction.commandName, commands);
     if (!command) return;
 
