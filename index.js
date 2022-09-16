@@ -49,7 +49,7 @@ if (process.argv.includes("-r")) {
 client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand() && !interaction.isUserContextMenuCommand && !interaction.isModalSubmit()) return;
     if (interaction.customId === 'apply'){
-        interaction.reply("IDK")
+        interaction.reply({ content: `Application successfully sent. Please wait at least 24 hours for it to be processed.`, ephemeral: true });
     }
     const command = commandFromName(interaction.commandName, commands);
     if (!command) return;
