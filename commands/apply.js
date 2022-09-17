@@ -9,11 +9,13 @@ const timezone = new TextInputBuilder()
         .setCustomId('timezone')
         .setLabel('Timezone')
         .setStyle(TextInputStyle.Short)
+        .setRequired(true)
         .setPlaceholder('UTC±00:00');
 
 const age = new TextInputBuilder()
         .setCustomId('age')
         .setLabel('Age')
+        .setRequired(true)
         .setStyle(TextInputStyle.Short)
         .setMaxLength(3);
 
@@ -22,12 +24,14 @@ const activeness = new TextInputBuilder()
         .setLabel('Activeness')
         .setStyle(TextInputStyle.Short)
         .setMaxLength(2)
+        .setRequired(true)
         .setPlaceholder('(Out of 10)');
 
 const experience = new TextInputBuilder()
         .setCustomId('experience')
         .setLabel('Experience as a mod')
         .setStyle(TextInputStyle.Short)
+        .setRequired(true)
         .setMaxLength(2)
         .setPlaceholder('(Out of 10)');
 
@@ -35,21 +39,17 @@ const reason = new TextInputBuilder()
         .setCustomId('reason')
         .setLabel('Reason')
         .setStyle(TextInputStyle.Paragraph)
+        .setRequired(true)
         .setMinLength(10) //change as per required or remove altogether to accept funny applications
         .setMaxLength(500);
 
-const ActionRow1 = new ActionRowBuilder().addComponents(timezone);
-const ActionRow2 = new ActionRowBuilder().addComponents(age);
-const ActionRow3 = new ActionRowBuilder().addComponents(activeness);
-const ActionRow4 = new ActionRowBuilder().addComponents(experience);
-const ActionRow5 = new ActionRowBuilder().addComponents(reason);
 
 data.addComponents(
-	ActionRow1,
-	ActionRow2,
-	ActionRow3,
-	ActionRow4,
-	ActionRow5,
+	new ActionRowBuilder().addComponents(timezone),
+	new ActionRowBuilder().addComponents(age),
+	new ActionRowBuilder().addComponents(activeness),
+	new ActionRowBuilder().addComponents(experience),
+	new ActionRowBuilder().addComponents(reason);
 )
 interaction.showModal(data);
 
